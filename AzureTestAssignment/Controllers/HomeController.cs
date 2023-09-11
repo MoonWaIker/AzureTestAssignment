@@ -11,15 +11,18 @@ namespace AzureTestAssignment.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _logger.LogDebug($"{nameof(HomeController)} was created");
         }
 
         public IActionResult Index()
         {
+            _logger.LogDebug($"Redirected to {nameof(Index)}");
             return View();
         }
 
         public IActionResult Privacy()
         {
+            _logger.LogDebug($"Redirected to {nameof(Privacy)}");
             return View();
         }
 
