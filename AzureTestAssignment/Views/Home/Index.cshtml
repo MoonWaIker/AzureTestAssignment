@@ -4,5 +4,27 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form enctype="multipart/form-data" method="post">
+        <dd>
+            <input class="form-control-sm" name="email" id="email" placeholder="Type your email">
+        </dd>
+        <dd>
+            <input type="file" name="file" id="file" />
+        </dd>
+        <dd>
+        <input class="btn btn-primary" type="submit" asp-route-file="file" asp-route-email="email" />
+        </dd>
+    </form>
+    @if (TempData.ContainsKey("SuccessMessage"))
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (TempData.ContainsKey("ErrorMessage"))
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
 </div>
