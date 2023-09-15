@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using SendGrid;
@@ -10,8 +12,6 @@ namespace AzureTestFunctions
 {
     public static class Function
     {
-        private const string gridKey = "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";
-
         [FunctionName("BlobTriggerCSharp")]
         public static async Task RunAsync(
         [BlobTrigger("blobcontainer/{name}")] Stream myBlob,
@@ -19,6 +19,9 @@ namespace AzureTestFunctions
         ILogger log)
         {
             log.LogInformation($"C# Blob trigger function processed blob Name: {name}, Size: {myBlob.Length} Bytes");
+
+            var client = new SecretClient(new Uri("https://testassignmentfsecrets.vault.azure.net/"), new DefaultAzureCredential());
+            string gridKey = client.GetSecret("SendGridApiKey").Value.Value;
 
             try
             {
