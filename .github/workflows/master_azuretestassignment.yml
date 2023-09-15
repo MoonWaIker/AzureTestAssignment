@@ -39,4 +39,4 @@ jobs:
           app-name: 'azuretestassignment'
           slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_37F17EC4571C4ED4AA20DC52264271ED }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_2 }}
