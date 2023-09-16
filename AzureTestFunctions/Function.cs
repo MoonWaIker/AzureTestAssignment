@@ -14,7 +14,7 @@ namespace AzureTestFunctions
     {
         [FunctionName("BlobTriggerCSharp")]
         public static async Task RunAsync(
-        [BlobTrigger("blobcontainer/{name}", Connection = "connection")] Stream myBlob,
+        [BlobTrigger("blobcontainer/{name}")] Stream myBlob,
         string name,
         ILogger log)
         {
