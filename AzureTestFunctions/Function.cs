@@ -20,11 +20,11 @@ namespace AzureTestFunctions
         {
             log.LogInformation($"C# Blob trigger function processed blob Name: {name}, Size: {myBlob.Length} Bytes");
 
-            var client = new SecretClient(new Uri("https://testassignmentfsecrets.vault.azure.net/"), new DefaultAzureCredential());
-            string gridKey = client.GetSecret("SendGridApiKey").Value.Value;
-
             try
             {
+                var client = new SecretClient(new Uri("https://testassignmentfsecrets.vault.azure.net/"), new DefaultAzureCredential());
+                string gridKey = client.GetSecret("SendGridApiKey").Value.Value;
+
                 var sendGridClient = new SendGridClient(gridKey);
                 var msg = new SendGridMessage();
                 msg.SetFrom(new EmailAddress("muhinmihajlo40@gmail.com", "Mykhailo Mukhin"));
